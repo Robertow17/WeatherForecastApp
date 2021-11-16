@@ -9,7 +9,7 @@ interface Api {
         const val BASE_URL = "https://api.npoint.io/"
     }
 
-    @get:GET("f439d825f6169b7dc013")
+    @get:GET("f310dbd8cd2f175db54c")
     val weatherForecastForCity: Call<WeatherForecastForCity?>?
 
 

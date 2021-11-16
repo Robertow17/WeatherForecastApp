@@ -42,7 +42,7 @@ class WeekDayWeatherAdapter(private var weekDayWeather: List<com.concise.weather
                 val myIntent = Intent(context, DayWeatherDetailsActivity::class.java)
                 val dayWeather = weekDayWeather[pos]
                 with(dayWeather){
-                    val date = timeInMillisToDate(dt)
+                    val date = timeInMillisToDate(dt*1000)
                     val df = DecimalFormat("0.00")
                     df.roundingMode = RoundingMode.HALF_UP
                     val dayTemp = df.format(temp.day.let { kelvinToCelsius(it) }) + "°C"
@@ -67,7 +67,7 @@ class WeekDayWeatherAdapter(private var weekDayWeather: List<com.concise.weather
     override fun onBindViewHolder(holder: WeekDayWeatherViewHolder, position: Int) {
         val dayWeather = weekDayWeather[position]
         with (dayWeather) {
-            val date = timeInMillisToDate(dt)
+            val date = timeInMillisToDate(dt*1000)
             val df = DecimalFormat("0.00")
             df.roundingMode = java.math.RoundingMode.HALF_UP
             val dayTemp = df.format(kelvinToCelsius(temp.day)) + "°C"
@@ -86,7 +86,7 @@ class WeekDayWeatherAdapter(private var weekDayWeather: List<com.concise.weather
     }
 
     private fun timeInMillisToDate(time: Long): String {
-        val pattern = "EEE, dd-mm-yyyy"
+        val pattern = "EEEE, dd-MM-yyyy"
         val simpleDateFormat = SimpleDateFormat(pattern)
         return simpleDateFormat.format(Date(time))
     }
